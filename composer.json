@@ -2,6 +2,7 @@
     "name": "debianmoor/joked-hacker",
     "description": "You shall not pass!",
     "type": "project",
+    "license": "MIT",
     "authors": [
         {
             "name": "DebianMoor",
