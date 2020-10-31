@@ -16,4 +16,9 @@ class JokeLinksRepository
         'https://www.youtube.com/watch?v=IkdmOVejUlI',
         'https://www.youtube.com/watch?v=5XmjJvJTyx0',
     ];
+    
+    public function getRandomLink(): string
+    {
+        return static::LINKS[array_rand(static::LINKS)];
+    }
 }

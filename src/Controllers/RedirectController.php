@@ -2,14 +2,14 @@
 
 namespace DebianMoor\JokedHacker\Controllers;
 
-use App\Http\Controllers\Controller;
 use DebianMoor\JokedHacker\Repositories\JokeLinksRepository;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Redirect;
 
 class RedirectController extends Controller
 {
-    public function handle()
+    public function __invoke(JokeLinksRepository $jokeLinksRepository)
     {
-        return Redirect::to(JokeLinksRepository::LINKS[array_rand(JokeLinksRepository::LINKS)]);
+        return Redirect::to($jokeLinksRepository->getRandomLink());
     }
 }
