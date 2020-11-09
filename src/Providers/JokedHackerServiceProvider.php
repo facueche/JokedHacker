@@ -2,10 +2,21 @@
 
 namespace DebianMoor\JokedHacker\Providers;
 
+use DebianMoor\JokedHacker\Controllers\RedirectController;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class JokedHackerServiceProvider extends ServiceProvider
 {
+    private const BANNED_ROUTES = [
+        '.env',
+        'admin',
+        'admin.php',
+        'env',
+        'wp-admin',
+        'wp-admin.php'
+    ];
+
     /**
      * Register services.
      *
@@ -13,17 +24,8 @@ class JokedHackerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->loadRoutesFrom(__DIR__.'/../Routes/routes.php');
-        $this->app->make('DebianMoor\JokedHacker\Controllers\RedirectController');
-    }
-
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
+        foreach (static::BANNED_ROUTES as $route) {
+            Route::get($route, RedirectController::class);
+        }
     }
 }
